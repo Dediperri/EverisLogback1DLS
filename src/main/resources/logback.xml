@@ -1,0 +1,32 @@
+
+<configuration debug="false" scan="true">
+
+	<timestamp key="logDateVar" datePattern="dd-MM-yyyy" />
+
+	<appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>C://dev//logs//elb1DLS-${logDateVar}.log</file>
+	    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+	      <fileNamePattern>C://dev//logs//elb1DLS-${logDateVar}.%i.log</fileNamePattern>
+	      <minIndex>1</minIndex>
+	      <maxIndex>3</maxIndex>
+	    </rollingPolicy>
+	    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+	    <maxFileSize>50KB</maxFileSize>
+	    </triggeringPolicy>
+			<encoder>
+				<pattern>%d{HH:mm:ss.SS} [%thread] %-5level %logger - [%method] - %msg%n</pattern>
+			</encoder>
+	</appender>
+	
+	<appender name="Consola" class="ch.qos.logback.core.ConsoleAppender">
+	<encoder>
+	<pattern>%d{HH:mm:ss.SS} [%thread] %-5level %logger - [%method] - %msg%n</pattern>
+	</encoder>
+	</appender>
+	
+	<root level="trace">
+		<appender-ref ref="ROLLING"/>
+		<!-- <appender-ref ref="Consola"/> -->
+	</root>
+
+</configuration>
